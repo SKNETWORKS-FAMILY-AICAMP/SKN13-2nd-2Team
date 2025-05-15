@@ -1,13 +1,14 @@
 
 import pymysql
 
+
 def get_connection():
     return pymysql.connect(
-        host="192.168.0.40",
-        user="SKN13_2nd_2Team",
-        password="1111",  # 실제 비밀번호로 대체해!
-        db="brp",
+        host="database-1.cqv4s0komaez.us-east-1.rds.amazonaws.com",
+        user="admin",
+        password="13221322",
+        db="brp",        # ← 사용하는 DB명 확인 필요!
         port=3306,
         charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor  # dict 형태로 row 받기
+        cursorclass=pymysql.cursors.DictCursor
     )
