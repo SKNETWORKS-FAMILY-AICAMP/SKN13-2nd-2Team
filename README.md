@@ -42,7 +42,7 @@
 >       </a>
 >       </td>
 >       <td align="center">
->       <a href="https://github.com/mojioho">
+>       <a href="https://github.com/mojiho">
 >         <img src="https://img.shields.io/badge/GitHub-mojioho-9AC5F4?logo=github" alt="모지호 GitHub"/>
 >       </a>
 >       </td>
@@ -52,7 +52,7 @@
 >       </a>
 >       </td>
 >       <td align="center">
->       <a href="https://github.com/mingyu--oo">
+>       <a href="https://github.com/mingyu-oo">
 >         <img src="https://img.shields.io/badge/GitHub-mingyu--oo-CDE990?logo=github" alt="우민규 GitHub"/>
 >       </a>
 >       </td>
