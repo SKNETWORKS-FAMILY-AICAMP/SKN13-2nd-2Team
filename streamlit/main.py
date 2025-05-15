@@ -1,73 +1,84 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
-
-# 페이지 모듈 import
-from modules import predict, train, model, data
-
-# 페이지 설정
-st.set_page_config(page_title="야구선수 은퇴 예측", layout="wide")
-
-# st.markdown("""
-#     <style>
-#     /* 사이드바 배경 */
-#     section[data-testid="stSidebar"] {
-#         background-color: #fef4e3;  /* 흰색 유지 */
-#     }
-
-#     /* 사이드바 제목 */
-#     section[data-testid="stSidebar"] h1, 
-#     section[data-testid="stSidebar"] h2, 
-#     section[data-testid="stSidebar"] h3 {
-#         color: #fef4e3;  /* 주황색 */
-#     }
-
-#     /* 버튼 스타일 (예: 차량 보기) */
-#     div.stButton > button {
-#         background-color: #fef4e3;
-#         color: black;
-#         border: none;
-#         border-radius: 8px;
-#         padding: 0.5em 1em;
-#     }
-
-#     /* 버튼 호버 스타일 */
-#     div.stButton > button:hover {
-#         background-color: #F28500;
-#         color: white;
-#     }
-
-#     /* 선택된 텍스트 강조 색상 */
-#     .css-1v0mbdj {
-#         color: #f57c00;
-#     }
-#     </style>
-# """, unsafe_allow_html=True)
-
-# ✅ 사이드바 메뉴 구성 (세션 상태 제거)
-with st.sidebar:
-    # 👉 사이드바 너비 안에서 3등분해서 가운데 칼럼에만 이미지 배치
-    col1, col2, col3 = st.columns([1, 8, 1])  # 비율 조절 가능
-    selected = option_menu( 
-        "신차 검색 서비스",
-        ["예측", "학습", "모델", "산출물"],
-        icons=["search", "stars", "exclamation-triangle", "question-circle"],
-        menu_icon="car-front",
-        default_index=0,
-        styles={
-            "container": {"padding": "4!important"},
-            "icon": {"font-size": "20px"},
-            "nav-link": {"font-size": "16px", "text-align": "left", "margin": "0px"},
-            "nav-link-selected": {"background-color": "#F28500"},
-        }
-    )
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 
-# ✅ 라우팅 처리
-if selected == "예측":
-    predict.show()
-elif selected == "학습":
-    train.show()
-elif selected == "모델":
-    model.show()
-elif selected == "산출물":
-    data.show()
+# 한글 글꼴 설정 (맑은 고딕)
+plt.rcParams['font.family'] = 'Malgun Gothic'
+
+st.set_page_config(page_title="MLB 데이터 앱", layout="wide")
+
+# 사이드바 페이지 선택
+page = st.sidebar.selectbox(
+    "📂 페이지 선택",
+    ("📊 선수은퇴나이 예측", "📈 Info", "ℹ️ 팀소개")
+)
+
+
+# 페이지 1: 통산 기록 보기
+if page == "📊 선수은퇴나이 예측":
+    st.title("📊 선수은퇴나이 예측")
+
+    x = np.linspace(0, 10, 100)
+    y = np.sin(x)
+
+    # 👇 작은 크기의 그래프 + 한글 글꼴 적용됨
+    fig, ax = plt.subplots(figsize=(15, 6))
+    ax.plot(x, y, label='사인 함수', color='blue')
+    ax.set_title("사인 곡선")
+    ax.set_xlabel("X 값")
+    ax.set_ylabel("Y 값")
+    ax.legend()
+
+    st.pyplot(fig)
+
+    # 그래프 별 예제 코드
+    # 예제 데이터 
+    # np.random.seed(42)
+    # x = np.arange(1, 11)
+    # y1 = np.random.randint(10, 100, size=10)
+    # y2 = np.random.randint(50, 150, size=10)
+
+    # df = pd.DataFrame({
+    #     "X": x,
+    #     "A 그룹": y1,
+    #     "B 그룹": y2
+    # })
+
+    # # 선 그래프
+    # st.subheader("📊 선 그래프")
+    # st.line_chart(df.set_index("X"))
+
+    # # 바 그래프
+    # st.subheader("📊 바 그래프")
+    # st.bar_chart(df.set_index("X"))
+
+    # # 산점도 (Matplotlib 사용)
+    # st.subheader("📌 산점도 (Matplotlib)")
+    # fig, ax = plt.subplots()
+    # ax.scatter(df["A 그룹"], df["B 그룹"], color='tomato')
+    # ax.set_xlabel("A 그룹")
+    # ax.set_ylabel("B 그룹")
+    # ax.set_title("A vs B 산점도")
+    # st.pyplot(fig)
+
+
+# 페이지 2: 시각화
+elif page == "📈 모델설명":
+    st.title("📈 모델설명")
+
+
+# 페이지 3: 소개
+elif page == "ℹ️ 소개":
+    st.title("ℹ️ 프로젝트 소개")
+    st.markdown("""
+    이 앱은 MLB 선수들의 통산 기록 데이터를 탐색하고 시각화하기 위해 만들어졌습니다.
+
+    **기능:**
+    - 통산 기록 테이블 페이지네이션
+    - 주요 지표 시각화
+    - 스트림릿 사이드바 기반 페이지 전환
+
+    **제작:** 당신의 이름 😊
+    """)
