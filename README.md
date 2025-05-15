@@ -36,10 +36,26 @@
 >      </td>
 >    </tr>
 >    <tr>
->      <td><a href="https://github.com/yowon7"><div align=center>@yowon7</div></a></td>
->      <td><a href="https://github.com/mojioho"><div align=center>@mojioho</div></a></td>
->      <td><a href="https://github.com/SeanJang92"><div align=center>@SeanJang92</div></a></td>
->      <td><a href="https://github.com/mingyu--oo"><div align=center>@mingyu--oo</div></a></td>
+>       <td align="center">
+>       <a href="https://github.com/yowon7">
+>         <img src="https://img.shields.io/badge/GitHub-yowon7-F1BFCA?logo=github" alt="이유나 GitHub"/>
+>       </a>
+>       </td>
+>       <td align="center">
+>       <a href="https://github.com/mojioho">
+>         <img src="https://img.shields.io/badge/GitHub-mojioho-9AC5F4?logo=github" alt="모지호 GitHub"/>
+>       </a>
+>       </td>
+>       <td align="center">
+>       <a href="https://github.com/SeanJang92">
+>         <img src="https://img.shields.io/badge/GitHub-SeanJang92-FFD59E?logo=github" alt="장시인 GitHub"/>
+>       </a>
+>       </td>
+>       <td align="center">
+>       <a href="https://github.com/mingyu--oo">
+>         <img src="https://img.shields.io/badge/GitHub-mingyu--oo-CDE990?logo=github" alt="우민규 GitHub"/>
+>       </a>
+>       </td>
 >    </tr>
 >  </tbody>
 ></table>
