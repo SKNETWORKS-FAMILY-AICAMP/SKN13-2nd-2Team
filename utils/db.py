@@ -3,7 +3,7 @@ import pymysql
 
 def get_connection():
     return pymysql.connect(
-        host="192.168.0.17",
+        host="192.168.0.40",
         user="SKN13_2nd_2Team",
         password="1111",  # 실제 비밀번호로 대체해!
         db="brp",

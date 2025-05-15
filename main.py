@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 from utils.db import get_connection
 
 # 페이지 모듈 import
-from modules import predict, train, model, data
+from pages import predict, train, model, data
 
 # 페이지 설정
 st.set_page_config(page_title="야구선수 은퇴 예측", layout="wide")
