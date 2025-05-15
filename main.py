@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from utils.db import get_connection
 
 # 페이지 모듈 import
 from modules import predict, train, model, data
