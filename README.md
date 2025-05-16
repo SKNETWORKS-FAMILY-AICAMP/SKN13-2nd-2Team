@@ -121,12 +121,17 @@
 |--------------|
 |![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)  |
 
+|💾 데이터베이스 |
+|----------------|
+|![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white) |
+
+|☁ 클라우드 |
+|------------|
+|![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon-AWS&logoColor=white) |
 <br>
 
 ----
 
-
----
 
 # 3. WBS
 ><br>
@@ -135,7 +140,7 @@
 ## 📅 Day 1
 
 ### 오전
-- 프로젝트 목표 명확화
+- 프로젝트 목표 설정
   - 예측 목표 설정 (예: 은퇴 여부 예측 or 은퇴 시기 예측)
   - 평가 지표 설정 (정확도, MAE 등)
 - 필요한 통산 기록 항목 정리
@@ -212,24 +217,92 @@
 >
 > **2) 결측치 확인**
 ><br>
->
+>결측치 없었음.
 >
 >
 >**3) 이상치 확인 및 인코딩**
 ><br>
->
+>인코딩 방식 : StandardScaler
 >
 >**4) 데이터 시각화**
->
+> 
 >
 >
 
 ----
 
-# 5. 인공지능 학습 결과서
+# ✨ 5. 인공지능 학습 결과서
 
+## 📌 모델 비교 개요
+- **목표**: 통계 및 머신러닝 기법을 활용해 회귀 성능을 비교
+- **사용 모델**:
+  - **LR (Linear Regression)**
+  - **RF (Random Forest Regressor)**
+  - **XGB (XGBoost Regressor)**
+  - **SVR (Support Vector Regressor)**
+
+- **공통 설정**:
+  - 훈련/검증 데이터 분리: 8:2
+  - 평가지표: RMSE, MAE, R²
 
 ---
+
+### 📊 5-1. 모델별 성능 결과
+
+#### 🔹 1) Linear Regression (LR)
+- **MAE**: 1.20 
+- **MSE**: 2.63 
+- **R²**: 0.89
+
+![Linear Regression 결과]()
+
+---
+
+#### 🔹 2) Random Forest Regressor (RF)
+- **MAE**: 0.99  
+- **MSE**: 2.13  
+- **R²**: 0.91
+
+![Random Forest 결과]()
+
+---
+
+#### 🔹 3) Support Vector Regressor (SVR)
+- **MAE**: 1.01  
+- **MSE**: 2.04  
+- **R²**: 0.91
+
+![SVR 결과]()
+
+
+#### 🔹 4) XGBoost Regressor (XGB)
+- **MAE**: 0.95  
+- **MSE**: 2.02  
+- **R²**: 0.92
+
+![XGBoost 결과](./images/xgb_result.png)
+
+---
+
+
+### 🏁 5-2. 모델 비교 및 결론
+
+| 모델 | RMSE | MAE | R² |
+|------|------|-----|----|
+| LR   | 1.20 | 2.63 | 0.89 |
+| RF   | 0.99 | 2.13 | 0.91 |
+| SVR  | 1.01 | 2.04 | 0.91 |
+| XGB  | **0.95** | **2.02** | **0.92** |
+
+- **Linear Regression**은 가장 기본적인 선형 모델로,  
+  다른 모델에 비해 RMSE와 MAE가 높고 R²도 가장 낮아 상대적으로 성능이 떨어짐..
+- **Random Forest**와 **SVR**도 유사한 수준의 좋은 성능을 보였으며,  
+  R²가 0.91로 높고 오차도 작아 실무 적용에도 적합한 모델로 판단.
+- **XGBoost**는 모든 지표에서 가장 뛰어난 성능을 보여주었으며,  
+  특히 RMSE가 가장 낮고 R²가 가장 높아 예측 정확도가 우수함을 확인할 수 있습니다.
+
+✅ **결론**: **XGBoost**가 가장 우수한 성능을 보이며, 최종 회귀 모델로 선정하는 것이 적합.
+
 
 
 # 6. 수행결과
