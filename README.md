@@ -7,8 +7,8 @@
 
 # 0. 팀 소개
 
-### ⚾ 팀명:  
-**미정 (작성 시 입력해주세요)**
+## ⚾ 팀명:  **♥️유나와 삼촌들🍞**
+
 
 <br>
 
@@ -23,16 +23,16 @@
     </tr>
     <tr>
       <td align="center">
-          <img alt="Image" src="" width="200px;" alt="이유나"/>
+          <img alt="Image" src="https://github.com/user-attachments/assets/d399de16-b8a8-4dcd-aa47-418dd242faa7" width="200px;" alt="이유나"/>
       </td>
       <td align="center">
-          <img alt="Image" src="" width="200px;" alt="모지호"/>
+          <img alt="Image" src="https://github.com/user-attachments/assets/94577173-6d9f-4c03-b4fd-8c568688ae44" width="200px;" alt="모지호"/>
       </td>
       <td align="center">
-        <img alt="Image" src="" width="200px;" alt="장시인" />
+        <img alt="Image" src="https://github.com/user-attachments/assets/a6d23718-2ce6-4acd-8463-a98cf7264124" width="200px;" alt="장시인" />
       </td>
       <td align="center">
-        <img alt="Image" src="" width="200px;" alt="우민규"/>
+        <img alt="Image" src="https://github.com/user-attachments/assets/904eb895-c834-41e5-81b0-223d2f52ce90" width="200px;" alt="우민규"/>
       </td>
     </tr>
     <tr>
@@ -225,8 +225,9 @@
 >인코딩 방식 : StandardScaler
 >
 >**4) 데이터 시각화**
-> 
->
+> <br>
+**4-1) feature간 상관계수**
+>![Image](https://github.com/user-attachments/assets/512e3786-e06a-4cb2-876b-9f217bfb1740)
 >
 
 ----
@@ -254,7 +255,6 @@
 - **MSE**: 2.63 
 - **R²**: 0.89
 
-![Linear Regression 결과]()
 
 ---
 
@@ -263,7 +263,6 @@
 - **MSE**: 2.13  
 - **R²**: 0.91
 
-![Random Forest 결과]()
 
 ---
 
@@ -272,15 +271,13 @@
 - **MSE**: 2.04  
 - **R²**: 0.91
 
-![SVR 결과]()
-
+---
 
 #### 🔹 4) XGBoost Regressor (XGB)
 - **MAE**: 0.95  
 - **MSE**: 2.02  
 - **R²**: 0.92
 
-![XGBoost 결과](./images/xgb_result.png)
 
 ---
 
@@ -304,13 +301,16 @@
 ✅ **결론**: **XGBoost**가 가장 우수한 성능을 보이며, 최종 회귀 모델로 선정하는 것이 적합.
 
 
+# 6. 한 줄 회고
+ <br>
 
-# 6. 수행결과
+**이유나** :
+<br>
 
+**모지호** : ***노인을 위한 코딩은 없다*** 
+<br>
 
+**장시인** : 무엇을하고 어떻게 해야하는지 몰라 정말 난감했고 다시 본업으로 가야하나 잠깐 고민도 했지만, 팀원들의 도움으로 어찌저찌 마칠 수 있었습니다.  남은 기간도 끝까지 잘 견디어보겠습니다. 감사합니다.
+<br>
 
----
-
-
-
-# 7. 한 줄 회고
+**우민규** : 우당탕탕 고려해야 할 점이 한두 가지가 아니라 힘들었지만, 팀원들과 진행하다 보니 결과가 나와 재밌었습니다! 다들 고생하셨습니다!!
