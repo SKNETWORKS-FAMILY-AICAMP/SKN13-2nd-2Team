@@ -1,15 +1,16 @@
 import streamlit as st
 import pandas as pd
-import pickle
-from utils.db import get_engine
+
+# CSV 파일 경로 정의
+TEAM_CSV = "stream_data/kbo_final_team_2025.csv"
+ACTIVE_STATS_CSV = "stream_data/kbo_hitters_active_enc.csv"
+PREDICTION_CSV = "stream_data/kbo_active_predict.csv"
 
 def show():
     st.title("⚾ KBO 성적에 따른 은퇴 시기 예측")
 
-    engine = get_engine()
-
-    # 선수 정보 불러오기
-    df = pd.read_sql("SELECT name, team, pic_url FROM kbo_final_team_2025", engine)
+    # 선수 정보 불러오기 (CSV)
+    df = pd.read_csv(TEAM_CSV)
 
     # 상단 UI
     col1, col2, col3 = st.columns([3, 3, 1])
@@ -17,10 +18,7 @@ def show():
         teams = ['(선택)', 'KIA', 'KT', 'LG', 'NC', 'SSG', '두산', '롯데', '삼성', '키움', '한화']
         selected_team = st.selectbox("팀 선택", teams)
     with col2:
-        if selected_team != "(선택)":
-            filtered_df = df[df['team'] == selected_team]
-        else:
-            filtered_df = df
+        filtered_df = df[df['team'] == selected_team] if selected_team != "(선택)" else df
         player_dict = {row["name"]: row["pic_url"] for _, row in filtered_df.iterrows()}
         selected_name = st.selectbox("이름 선택", list(player_dict.keys()) if player_dict else ["선수 없음"])
     with col3:
@@ -30,13 +28,9 @@ def show():
     if search and selected_name in player_dict:
         selected_pic_url = player_dict[selected_name]
 
-        # 선수 기록 불러오기
-        stats_df = pd.read_sql(f"""
-            SELECT *
-            FROM kbo_active
-            WHERE pic_url = '{selected_pic_url}'
-            ORDER BY season DESC
-        """, engine)
+        # 선수 기록 불러오기 (CSV)
+        stats_df = pd.read_csv(ACTIVE_STATS_CSV)
+        stats_df = stats_df[stats_df['pic_url'] == selected_pic_url].sort_values(by='season')
 
         if not stats_df.empty:
             left, right = st.columns([1, 5])
@@ -50,10 +44,8 @@ def show():
                     'RBI', 'SB', 'CS', 'BB', 'HBP', 'SO', 'GDP', 'SLG', 'OBP', 'OPS', 'E'
                 ]
 
-                if 'OPS' not in stats_df.columns:
-                    stats_df['OPS'] = stats_df['OBP'] + stats_df['SLG']
-
-                stats_df = stats_df.sort_values(by='season', ascending=True).reset_index(drop=True)
+                stats_df['OPS'] = stats_df['OBP'] + stats_df['SLG'] if 'OPS' not in stats_df.columns else stats_df['OPS']
+                stats_df = stats_df.sort_values(by='season').reset_index(drop=True)
 
                 sum_cols = ['G', 'PA', 'AB', 'R', 'H', '2B', '3B', 'HR', 'TB', 'RBI',
                             'SB', 'CS', 'BB', 'HBP', 'SO', 'GDP', 'E']
@@ -65,7 +57,6 @@ def show():
                 total_HBP = total['HBP']
                 total_PA = total['PA']
                 total_TB = total['TB']
-                total_SF = 0
 
                 AVG = total_H / total_AB if total_AB else 0
                 OBP = (total_H + total_BB + total_HBP) / total_PA if total_PA else 0
@@ -90,50 +81,18 @@ def show():
 
             st.markdown("---")
 
-            # ====== 예측 수행 ======
+            # ====== 예측 수행 (CSV 기반) ======
 
-            # birth 가져오기
-            birth_query = f"""
-                SELECT birth FROM kbo_active
-                WHERE pic_url = '{selected_pic_url}' LIMIT 1
-            """
-            birth_result = pd.read_sql(birth_query, engine)
-            if birth_result.empty:
-                st.error("선수의 생년 정보를 찾을 수 없습니다.")
-                return
+            # 예측 결과 CSV 불러오기
+            predict_df = pd.read_csv(PREDICTION_CSV)  # 경로는 알맞게 수정해줘
 
-            birth = birth_result.iloc[0]['birth']
+            # pic_url 기준으로 해당 선수의 예측 데이터 찾기
+            row = predict_df[predict_df['pic_url'] == selected_pic_url]
 
-            # 모델 로드
-            with open('kbo_xgb_model.pkl', 'rb') as f:
-                model = pickle.load(f)
+            if not row.empty:
+                predicted_year = int(row.iloc[0]['predict_year'])
+                st.subheader(f"예상 은퇴 시기 : __{predicted_year}__")
+                st.caption("사전 예측된 XGBoost 결과 기반입니다.")
+            else:
+                st.warning("예측 데이터가 없습니다.")
 
-            # 입력 데이터 구성
-            input_data = pd.DataFrame([{
-                **total,
-                'AVG': AVG,
-                'OBP': OBP,
-                'SLG': SLG,
-                'OPS': OPS,
-                'active_year': stats_df['season'].nunique(),
-                'birth': birth
-            }])
-
-            # 전처리
-            input_data = pd.get_dummies(input_data)
-
-            model_columns = model.get_booster().feature_names
-            for col in model_columns:
-                if col not in input_data.columns:
-                    input_data[col] = 0
-            input_data = input_data[model_columns]
-
-            # 예측
-            predicted_age = model.predict(input_data)[0]
-            predicted_year = int(birth + predicted_age)
-
-            # 결과 표시
-            st.subheader(f"예상 은퇴 시기 : __{predicted_year}__")
-            st.caption("XGBoost 회귀 모델 기반 예측 결과입니다.")
-        else:
-            st.warning("해당 선수의 기록이 없습니다.")
