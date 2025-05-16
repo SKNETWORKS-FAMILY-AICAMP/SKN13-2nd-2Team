@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 from utils.db import get_engine
 
 # 페이지 모듈 import
-from modules import predict, train, model, data
+from modules import predict,lstm
 
 # 페이지 설정
 st.set_page_config(page_title="야구선수 은퇴 예측", layout="wide")
@@ -50,7 +50,7 @@ with st.sidebar:
     col1, col2, col3 = st.columns([1, 8, 1])  # 비율 조절 가능
     selected = option_menu( 
         "야구선수은퇴시기예측",
-        ["예측", "학습", "모델", "산출물"],
+        ["예측-XGBoost", "예측-LSTM"],
         icons=["search", "stars", "exclamation-triangle", "question-circle"],
         menu_icon="car-front",
         default_index=0,
@@ -64,11 +64,7 @@ with st.sidebar:
 
 
 # ✅ 라우팅 처리
-if selected == "예측":
+if selected == "예측-XGBoost":
     predict.show()
-elif selected == "학습":
-    train.show()
-elif selected == "모델":
-    model.show()
-elif selected == "산출물":
-    data.show()
+elif selected == "예측-LSTM":
+    lstm.show()
