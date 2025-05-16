@@ -74,6 +74,14 @@ def show():
 
                 full_df = pd.concat([stats_df[stat_cols], pd.DataFrame([total_row])[stat_cols]], ignore_index=True)
 
+                # ✅ 통산 기록 강조 적용
+                def highlight_total_row(row):
+                    if row.name == len(full_df) - 1:
+                        return ['font-weight: bold; background-color: #f0f0f0' for _ in row]
+                    else:
+                        return ['' for _ in row]
+                    
+
                 def highlight_last_row(row):
                     return ['font-weight: bold' if row.name == len(full_df) - 1 else '' for _ in row]
 
