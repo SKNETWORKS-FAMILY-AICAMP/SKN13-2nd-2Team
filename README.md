@@ -38,7 +38,7 @@
     <tr>
        <td align="center">
        <a href="https://github.com/yowon7">
-         <img src="https://img.shields.io/badge/GitHub-yowon7-F1BFCA?logo=github" alt="이유나 GitHub"/>
+         <img src="https://img.shields.io/badge/GitHub-yunawawa-F1BFCA?logo=github" alt="이유나 GitHub"/>
        </a>
        </td>
        <td align="center">
