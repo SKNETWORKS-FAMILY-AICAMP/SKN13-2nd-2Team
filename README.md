@@ -23,7 +23,7 @@
     </tr>
     <tr>
       <td align="center">
-          <img alt="Image" src="[https://github.com/user-attachments/assets/34487cd1-40bb-4e69-9401-8cccecf5e93f](https://github.com/yunawawa)" width="200px;" alt="이유나"/>
+          <img alt="Image" src="https://github.com/user-attachments/assets/34487cd1-40bb-4e69-9401-8cccecf5e93f" width="200px;" alt="이유나"/>
       </td>
       <td align="center">
           <img alt="Image" src="https://github.com/user-attachments/assets/f247de64-1ce8-48a0-af7c-0ecc783f3e99" width="200px;" alt="모지호"/>
@@ -37,7 +37,7 @@
     </tr>
     <tr>
        <td align="center">
-       <a href="https://github.com/yowon7">
+       <a href="https://github.com/yunawawa">
          <img src="https://img.shields.io/badge/GitHub-yunawawa-F1BFCA?logo=github" alt="이유나 GitHub"/>
        </a>
        </td>
